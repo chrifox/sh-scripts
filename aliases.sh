@@ -4,7 +4,7 @@ if [[ -f $SCRIPTS/.git_completion.sh  ]]
 then . $SCRIPTS/.git_completion.sh
 fi
 
-alias aliases="cat $PROFILE/aliases.sh"
+alias aliases="cat $SCRIPTS/aliases.sh"
 
 # git
 alias gs="git status"
