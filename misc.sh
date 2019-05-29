@@ -1,6 +1,8 @@
 # $SCRIPTS/misc.sh
 
 alias misc="cat $SCRIPTS/misc.sh"
+export PI="3.14159265358979323846264"
+alias pi="echo $PI"
 
 # split by :
 splitPath() {
@@ -18,7 +20,7 @@ msg() {
 if [[ -z "$1" ]]
 then echo "msg() takes a string"
 elif [[ -n "$1" ]]
-then echo "Your message: $1"
+then echo "$1"
 fi
 }
 
