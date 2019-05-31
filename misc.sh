@@ -4,6 +4,13 @@ alias misc="cat $SCRIPTS/misc.sh"
 export PI="3.14159265358979323846264"
 alias pi="echo $PI"
 
+# print color range
+printColors() {
+for (( i = $1; i < $2; i++ ))
+do echo "$(tput setaf $i)This is ($i) $(tput sgr0)"
+done
+}
+
 # split by :
 splitPath() {
 echo "${1//:/$'\n'}"
