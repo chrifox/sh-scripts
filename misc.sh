@@ -1,14 +1,13 @@
 # $SCRIPTS/misc.sh
 
-alias misc="cat $SCRIPTS/misc.sh"
-export PI="3.14159265358979323846264"
-alias pi="echo $PI"
-
 # print color range
 printColors() {
-for (( i = $1; i < $2; i++ ))
+START=${1:-0}
+END=${2:-$1+8}
+for (( i = $START; i < $END; i++ ))
 do echo "$(tput setaf $i)This is ($i) $(tput sgr0)"
 done
+echo "printColors expects (start, end)"
 }
 
 # split by :
@@ -24,21 +23,21 @@ echo ${1:-"This variable does not exist"}
 }
 
 msg() {
-if [[ -z "$1" ]]
+if [ -z "$1" ]
 then echo "msg() takes a string"
-elif [[ -n "$1" ]]
+elif [ -n "$1" ]
 then echo "$1"
 fi
 }
 
 # pass in array as "${array[@]}"
 readArray() {
-if [[ "$1" == "--help" || "$1" == "-h" ]]
+if [ "$1" == "--help" || "$1" == "-h" ]
 then echo 'pass in $array as "${array[@]}"'
 else
 arr=("$@")
 for i in "${arr[@]}"
-do echo "$i"
+do echo $i
 done
 fi
 }
