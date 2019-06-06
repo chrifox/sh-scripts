@@ -11,7 +11,7 @@ for (( i=0; i<${base}; i++ )); do
  printf "$(tput setab $i)  $(tput sgr0)"
 done
 
-group=6
+group="${1:-36}"
 for (( i=${base}; i<${total}; i++ )); do
  index=$((i - base))
  if (( $index % $group == 0 )); then
