@@ -1,7 +1,7 @@
 colors() {
 
 base=16
-rest=256
+total=256
 
 echo "${base} ${rest}"
 
@@ -11,9 +11,15 @@ done
 
 echo
 
-nonbase=$((rest - base))
-for (( i=${base}; i<=${nonbase}; i++ )); do
+rest=$((total - base))
+group=6
+
+for (( i=${base}; i<=${rest}; i++ )); do
 printf "$(tput setaf $i)o$(tput sgr0)"
+
+if (( $i % $group == 0 )); then
+echo
+fi
 done
 
 }
