@@ -10,7 +10,7 @@ done
 }
 
 colorWave() {
-chars="${1:-/^\_}"
+chars="${1:-/\_}"
 cols="${2:-12345678}"
 while :; do
  for (( i=0; i<${#chars}; i++ )); do
