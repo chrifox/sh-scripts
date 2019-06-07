@@ -1,3 +1,4 @@
+# color blocks
 colors() {
 
 base=16
@@ -22,3 +23,26 @@ done
 
 echo
 }
+
+# print color range
+printColors() {
+START=${1:-0}
+END=${2:-$1 + 8}
+for (( i=$START; i<$END; i++ )); do
+printf "$(tput setab $i) $i $(tput sgr0)"
+done
+echo
+}
+
+# snake
+colorWave() {
+defaultChars="/\_"
+chars="${1:-$defaultChars}"
+cols="${2:-256}"
+while :; do
+ for (( i=0; i<${#chars}; i++ )); do
+  printf "%s" "$(tput setaf $((RANDOM%=$cols)))${chars:$i:1}$(tput sgr0)"
+ done
+done
+}
+

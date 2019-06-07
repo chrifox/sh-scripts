@@ -1,24 +1,5 @@
 # $SCRIPTS/misc.sh
 
-# print color range
-printColors() {
-START=${1:-0}
-END=${2:-$1+8}
-for (( i=$START; i<$END; i++ )); do
-echo "$(tput setaf $i)$i$(tput sgr0)"
-done
-}
-
-colorWave() {
-chars="${1:-/\_}"
-cols="${2:-12345678}"
-while :; do
- for (( i=0; i<${#chars}; i++ )); do
-  printf "%s" "$(tput setaf $((RANDOM%=$cols)))${chars:$i:1}$(tput sgr0)"
- done
-done
-}
-
 # split by :
 splitPath() {
 echo "${1//:/$'\n'}"
