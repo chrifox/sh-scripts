@@ -26,10 +26,10 @@ echo
 
 rainbowStr() {
 str=${1:-Rainbow!}
-start=${2:-0}
-end=${3:-16}
-for (( i=$start; i<$end; i++ )); do
-printf "$(tput setaf $i)${str:$i:1}$(tput sgr0)"
+offset=${2:-8}
+for (( i=0; i<${#str}; i++ )); do
+index=$((i + offset))
+printf "$(tput setaf $index)${str:$i:1}$(tput sgr0)"
 done
 echo
 }
