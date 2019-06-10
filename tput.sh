@@ -1,4 +1,4 @@
-# $SCRIPTS/text.sh
+# $SCRIPTS/tput.sh
 
 # tput setab [1-7] # Set the background colour using ANSI escape
 # tput setaf [1-7] # Set the foreground colour using ANSI escape
