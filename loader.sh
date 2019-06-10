@@ -4,9 +4,10 @@
 
 loader() {
 chars="/-\|"
+delay=${1:-0.25}
 while :; do
 for (( i=0; i<${#chars}; i++ )); do
-sleep 0.1
+sleep $delay
 tput cuf 2 && printf "%s\r" "${chars:$i:1}"
 done
 done
