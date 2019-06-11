@@ -24,7 +24,7 @@ done
 echo
 }
 
-rainbowStr() {
+rainbow() {
 str=${1:-Rainbow!}
 offset=${2:-8}
 for (( i=0; i<${#str}; i++ )); do
