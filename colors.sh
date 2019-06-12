@@ -1,3 +1,5 @@
+# $SCRIPTS/colors.sh
+
 # color blocks
 colors() {
 
