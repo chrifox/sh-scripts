@@ -45,5 +45,3 @@
 # OTHER
 # tput sgr0    # Reset text format to the terminal's default
 # tput bel     # Play a bell
-
-alias reset="tput sgr0"

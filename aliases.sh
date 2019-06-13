@@ -21,3 +21,5 @@ alias yb="yarn build"
 alias yc="yarn clean"
 alias yei="yarn extract-intl"
 alias haul="rm -rf haul-start-* && yarn haul"
+
+alias reset="tput sgr0"
