@@ -17,8 +17,10 @@ dots() {
 ch="..."
 while :; do
 for (( i=0; i<${#ch}; i++ )); do
-sleep 0.1
+sleep 0.2
 printf "%s" "${ch:$i:1}"
 done
+sleep 0.2
+printf "$(tput cub ${#ch})$(tput el)"
 done
 }
