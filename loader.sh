@@ -19,9 +19,6 @@ printf "$(tput cnorm)"
 }
 
 dots() {
-# Hide cursor
-printf "$(tput civis)"
-
 ch="${1:-...}"
 while :; do
  for (( i=0; i<${#ch}; i++ )); do
@@ -31,7 +28,4 @@ while :; do
  sleep 0.3
  printf "$(tput cub ${#ch})$(tput el)"
 done
-
-# Reset cursor
-printf "$(tput cnorm)"
 }
