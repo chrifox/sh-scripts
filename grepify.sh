@@ -1,6 +1,7 @@
 # $SCRIPTS/grepify.sh
 
 export GREP_OPTIONS="--color=auto"
+export GREP_COLOR="1;94;40"
 
 # super grep
 # takes (string file flag)
