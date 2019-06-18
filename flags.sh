@@ -8,6 +8,7 @@
 # straight cross
 # diagonal cross
 # center "circle" # eg JPN
+# other # eg Spain/USA
 
 flag() {
 cols=30
