@@ -11,16 +11,16 @@
 # other # eg Spain/USA
 
 flag() {
-cols=30
+cols=12
 rows=6
 country=${1}
 
 # POL
-if [[ $country == "POL" ]]; then hBiColor $cols $rows 255 1; fi
+if [[ $country == "POL" ]]; then hBiColor $cols $rows 15 1; fi
 # FRA
-if [[ $country == "FRA" ]]; then vTriColor $cols $rows 4 255 1; fi
+if [[ $country == "FRA" ]]; then vTriColor $cols $rows 4 15 1; fi
 # ITA
-if [[ $country == "ITA" ]]; then vTriColor $cols $rows 28 255 1; fi
+if [[ $country == "ITA" ]]; then vTriColor $cols $rows 28 15 1; fi
 }
 
 hBiColor() {
@@ -65,7 +65,7 @@ for (( row=0; row<$rows; row++ )); do
  for (( col=0; col<$cols; col++ )); do
   oneThird=$(($cols / 3))
   if [[ $col < $oneThird ]]; then printf "$(tput setab $firstColor)"
-  elif [[ $col > $(($cols - $oneThird - 1)) ]]; then printf "$(tput setab $thirdColor)"
+  elif [[ $col > $(($oneThird * 2 - 1)) ]]; then printf "$(tput setab $thirdColor)"
   else printf "$(tput setab $secondColor)"
   fi
   printf " "
