@@ -11,7 +11,7 @@
 # other # eg Spain/USA
 
 flag() {
-cols=12
+cols=18
 rows=6
 country=${1}
 
@@ -60,14 +60,14 @@ rows=$2
 firstColor=$3
 secondColor=$4
 thirdColor=$5
+oneThird=$(($cols / 3))
+twoThirds=$(($oneThird * 2))
 for (( row=0; row<$rows; row++ )); do
  for (( col=0; col<$cols; col++ )); do
-  oneThird=$(($cols / 3))
-  if [[ $col < $oneThird ]]; then printf "$(tput setab $firstColor)"
-  elif [[ $col > $(($oneThird * 2 - 1)) ]]; then printf "$(tput setab $thirdColor)"
-  else printf "$(tput setab $secondColor)"
-  fi
-  printf " "
+  [[ $col < $oneThird ]] && printf "$(tput setab $firstColor)"
+  [[ $col > $(($oneThird - 1)) ]] && [[ $col < $twoThirds ]] && printf "$(tput setab $secondColor)"
+  [[ $col > $(($twoThirds - 1)) ]] && printf "$(tput setab $thirdColor)"
+  printf "${col} "
  done
  printf "\n"
 done
