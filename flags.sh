@@ -28,15 +28,15 @@ cols=$1
 rows=$2
 topColor=$3
 bottomColor=$4
+printf "$(tput setab $topColor)"
 for (( row=0; row<$rows; row++ )); do
- if [[ $row < $(($rows / 2)) ]]; then printf "$(tput setab $topColor)"
- else printf "$(tput setab $bottomColor)"
- fi
+ [[ $row == $(($rows / 2)) ]] && printf "$(tput setab $bottomColor)"
  for (( col=0; col<$cols; col++ )); do
   printf " "
  done
- printf "$(tput sgr0)\n"
+ printf "\n"
 done
+printf "$(tput sgr0)"
 }
 
 vBiColor() {
@@ -46,9 +46,8 @@ leftColor=$3
 rightColor=$4
 for (( row=0; row<$rows; row++ )); do
  for (( col=0; col<$cols; col++ )); do
-  if [[ $col < $(($cols / 2)) ]]; then printf "$(tput setab $leftColor)"
-  else printf "$(tput setab $rightColor)"
-  fi
+  printf "$(tput setab $rightColor)"
+  [[ $col < $(($cols / 2)) ]] && printf "$(tput setab $leftColor)"
   printf " "
  done
  printf "$(tput sgr0)\n"
@@ -70,8 +69,9 @@ for (( row=0; row<$rows; row++ )); do
   fi
   printf " "
  done
- printf "$(tput sgr0)\n"
+ printf "\n"
 done
+printf "$(tput sgr0)"
 }
 
 straightCross() {
@@ -90,4 +90,23 @@ for (( row=0; row<$rows; row++ )); do
  done
  printf "$(tput sgr0)\n"
 done
+}
+
+straightCrossVector() {
+cols=$1
+rows=$2
+bgColor=$3
+crossColor=$4
+
+tile=$(($cols / 6))
+corner$(($tile * 4))
+
+# background
+printf "$(tput setab $bgColor)"
+
+# cross
+printf "$(tput setab $crossColor)"
+
+# reset
+printf "$(tput sgr0)"
 }
