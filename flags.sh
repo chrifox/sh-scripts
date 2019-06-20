@@ -73,3 +73,21 @@ for (( row=0; row<$rows; row++ )); do
  printf "$(tput sgr0)\n"
 done
 }
+
+straightCross() {
+cols=$1
+rows=$2
+bgColor=$3
+crossColor=$4
+crossCol=$(($cols / 2))
+crossRow=$(($rows / 2))
+for (( row=0; row<$rows; row++ )); do
+ for (( col=0; col<$cols; col++ )); do
+  printf "$(tput setab $bgColor)"
+  [[ $col == $(($crossCol)) ]] && printf "$(tput setab $crossColor)"
+  [[ $row == $(($crossRow)) ]] && printf "$(tput setab $crossColor)"
+  printf " "
+ done
+ printf "$(tput sgr0)\n"
+done
+}
