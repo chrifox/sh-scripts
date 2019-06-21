@@ -16,11 +16,12 @@ rows=6
 country=${1}
 
 # POL
-if [[ $country == "POL" ]]; then hBiColor $cols $rows 15 1; fi
+[ $country == "POL" ] && hBiColor $cols $rows 15 1
 # FRA
-if [[ $country == "FRA" ]]; then vTriColor $cols $rows 4 15 1; fi
+[ $country == "FRA" ] && vTriColor $cols $rows 4 15 1
 # ITA
-if [[ $country == "ITA" ]]; then vTriColor $cols $rows 28 15 1; fi
+[ $country == "ITA" ] && vTriColor $cols $rows 28 15 1
+
 }
 
 hBiColor() {
@@ -62,15 +63,36 @@ secondColor=$4
 thirdColor=$5
 oneThird=$(($cols / 3))
 twoThirds=$(($oneThird * 2))
+
+printf "$(tput setab $firstColor)"
 for (( row=0; row<$rows; row++ )); do
- for (( col=0; col<$cols; col++ )); do
-  [[ $col < $oneThird ]] && printf "$(tput setab $firstColor)"
-  [[ $col > $(($oneThird - 1)) ]] && [[ $col < $twoThirds ]] && printf "$(tput setab $secondColor)"
-  [[ $col > $(($twoThirds - 1)) ]] && printf "$(tput setab $thirdColor)"
-  printf "${col} "
+ for (( col=0; col<$oneThird; col++ )); do
+  index=$(($col + 1))
+  printf " "
+  [[ $(($index % $oneThird)) == 0 ]] && printf "\n"
  done
- printf "\n"
 done
+printf "$(tput cuu $rows)$(tput cuf $oneThird)"
+
+printf "$(tput setab $secondColor)"
+for (( row=0; row<$rows; row++ )); do
+ for (( col=$(($oneThird - 1)); col<$twoThirds; col++ )); do
+  index=$(($col + 1))
+  printf " "
+  [[ $(($index % $twoThirds)) == 0 ]] && printf "\n$(tput cuf $oneThird)"
+ done
+done
+printf "$(tput cuu $rows)$(tput cuf $oneThird)"
+
+printf "$(tput setab $thirdColor)"
+for (( row=0; row<$rows; row++ )); do
+ for (( col=$(($twoThirds - 1)); col<$cols; col++ )); do
+  index=$(($col + 1))
+  printf " "
+  [[ $(($index % $cols)) == 0 ]] && printf "\n$(tput cuf $twoThirds)"
+ done
+done
+printf "$(tput cub $twoThirds)"
 printf "$(tput sgr0)"
 }
 
