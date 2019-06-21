@@ -10,6 +10,10 @@
 # center "circle" # eg JPN
 # other # eg Spain/USA
 
+colorBlock() {
+ printf "$(tput setab $1) $(tput sgr0)"
+}
+
 flag() {
 cols=18
 rows=6
@@ -21,7 +25,8 @@ country=${1}
 [ $country == "FRA" ] && vTriColor $cols $rows 4 15 1
 # ITA
 [ $country == "ITA" ] && vTriColor $cols $rows 28 15 1
-
+# BEL
+[ $country == "BEL" ] && vTriColor $cols $rows 0 3 1
 }
 
 hBiColor() {
@@ -43,16 +48,27 @@ printf "$(tput sgr0)"
 vBiColor() {
 cols=$1
 rows=$2
-leftColor=$3
-rightColor=$4
+firstColor=$3
+secondColor=$4
+oneHalf=$(($cols / 2))
+
 for (( row=0; row<$rows; row++ )); do
- for (( col=0; col<$cols; col++ )); do
-  printf "$(tput setab $rightColor)"
-  [[ $col < $(($cols / 2)) ]] && printf "$(tput setab $leftColor)"
-  printf " "
+ for (( col=0; col<$oneHalf; col++ )); do
+  index=$(($col + 1))
+  colorBlock $firstColor
+  [[ $(($index % $oneHalf)) == 0 ]] && printf "\n"
  done
- printf "$(tput sgr0)\n"
 done
+printf "$(tput cuu $rows)$(tput cuf $oneHalf)"
+
+for (( row=0; row<$rows; row++ )); do
+ for (( col=$(($oneHalf)); col<$cols; col++ )); do
+  index=$(($col + 1))
+  colorBlock $secondColor
+  [[ $(($index % $cols)) == 0 ]] && printf "\n$(tput cuf $oneHalf)"
+ done
+done
+printf "$(tput cub $oneHalf)"
 }
 
 vTriColor() {
@@ -64,36 +80,32 @@ thirdColor=$5
 oneThird=$(($cols / 3))
 twoThirds=$(($oneThird * 2))
 
-printf "$(tput setab $firstColor)"
 for (( row=0; row<$rows; row++ )); do
  for (( col=0; col<$oneThird; col++ )); do
   index=$(($col + 1))
-  printf " "
+  colorBlock $firstColor
   [[ $(($index % $oneThird)) == 0 ]] && printf "\n"
  done
 done
 printf "$(tput cuu $rows)$(tput cuf $oneThird)"
 
-printf "$(tput setab $secondColor)"
 for (( row=0; row<$rows; row++ )); do
- for (( col=$(($oneThird - 1)); col<$twoThirds; col++ )); do
+ for (( col=$(($oneThird)); col<$twoThirds; col++ )); do
   index=$(($col + 1))
-  printf " "
-  [[ $(($index % $twoThirds)) == 0 ]] && printf "\n$(tput cuf $oneThird)"
+  colorBlock $secondColor
+[[ $(($index % $twoThirds)) == 0 ]] && printf "\n$(tput cuf $oneThird)"
  done
 done
 printf "$(tput cuu $rows)$(tput cuf $oneThird)"
 
-printf "$(tput setab $thirdColor)"
 for (( row=0; row<$rows; row++ )); do
- for (( col=$(($twoThirds - 1)); col<$cols; col++ )); do
+ for (( col=$(($twoThirds)); col<$cols; col++ )); do
   index=$(($col + 1))
-  printf " "
+  colorBlock $thirdColor
   [[ $(($index % $cols)) == 0 ]] && printf "\n$(tput cuf $twoThirds)"
  done
 done
 printf "$(tput cub $twoThirds)"
-printf "$(tput sgr0)"
 }
 
 straightCross() {
