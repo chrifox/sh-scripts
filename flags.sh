@@ -108,6 +108,6 @@ colorBlock $cols $rows $bgColor
 printf "$(tput cub $crossVPos)$(tput cuu $crossVPos)"
 colorBlock $cols 2 $crossColor
 printf "$(tput cuu $crossVPos)$(tput cuf $crossHPos)"
-colorBlock 2 $rows $crossColor $crossHPos
+colorBlock 2 $(($rows * 3)) $crossColor $crossHPos
 printf "$(tput cub $crossHPos)"
 }
