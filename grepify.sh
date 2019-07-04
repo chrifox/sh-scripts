@@ -13,7 +13,7 @@ removeBlankLines() {
 sgrep() {
  searchPhrase="${1}"
  file="${2}"
- printf "$(removeBlankLines $file | grep -n $searchPhrase)\n"
+ printf "$(removeBlankLines $file | grep -in $searchPhrase)\n"
 }
 
 # reverse grep
@@ -21,5 +21,5 @@ sgrep() {
 rgrep() {
  searchPhrase="${1}"
  file="${2}"
- printf "$(removeBlankLines $file | grep -vn $searchPhrase)\n"
+ printf "$(removeBlankLines $file | grep -vin $searchPhrase)\n"
 }

@@ -31,8 +31,12 @@ done
 }
 
 loadingBar() {
-printf "$(tput setab 250)          $(tput cub 10)$(tput setab 2)"
-for ((i=0; i<10; i++ )); do
+length=${1:-10}
+color=${2:-2}
+printf "$(tput setab 250)"
+for ((i=0; i<$length; i++ )); do printf " "; done
+printf "$(tput cub $length)$(tput setab $color)"
+for ((i=0; i<$length; i++ )); do
  sleep 0.3
  printf " "
 done
