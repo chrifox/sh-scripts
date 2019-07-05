@@ -6,14 +6,19 @@
 # interact to begin!
 
 interact() {
-printf "$(tput setaf 1) Begin...  $(tput sgr0)\n($(tput cols) x $(tput lines))\n"
-MODE=normal
-MY_PROMPT='$ '
+MY_PROMPT="$ "
+MODE=default
+X="$(tput cols)"
+Y="$(tput lines)"
+echo "$(tput setaf 2) ~ BEGIN ~ $(tput sgr0)"
+echo "Size: ${X} x ${Y}"
+echo "Mode: ${MODE}"
 while :
 do
   echo -n "$MY_PROMPT"
   read line
-  # eval "$line"
-  echo "$line"
+  # eval "${line}"
 done
+
+exit 0
 }
