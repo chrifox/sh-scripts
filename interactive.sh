@@ -6,7 +6,7 @@
 # interact to begin!
 
 interact() {
-MY_PROMPT="$ "
+PROMPT="$ "
 MODE=default
 X="$(tput cols)"
 Y="$(tput lines)"
@@ -15,9 +15,14 @@ echo "Size: ${X} x ${Y}"
 echo "Mode: ${MODE}"
 while :
 do
-  echo -n "$MY_PROMPT"
+  echo -n "$PROMPT"
   read line
-  # eval "${line}"
+  if [[ -n $line ]]; then
+   echo "You typed: ${line}"
+   echo "Is this a command? [Y/N]"
+   read entry
+   [[ $entry == "Y" ]] && eval "${echo} ${line}"
+  fi
 done
 
 exit 0
