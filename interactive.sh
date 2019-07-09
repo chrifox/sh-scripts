@@ -1,9 +1,7 @@
 # $SCRIPTS/interactive.sh
 
 # Goal here is to create an interactive shell script
-# User presses inputs and sees 'live' updates
-
-# interact to begin!
+# User enters choices for given questions and script generates output file
 
 interact() {
 PROMPT="$ "
@@ -21,7 +19,8 @@ do
    echo "You typed: ${line}"
    echo "Is this a command? [Y/N]"
    read entry
-   [[ $entry == "Y" ]] && eval "${echo} ${line}"
+   [[ $entry == "Y\|y" ]] && eval "${echo} ${line}"
+   [[ $entry == "N\|n" ]] && echo
   fi
 done
 
@@ -29,24 +28,23 @@ exit 0
 }
 
 menu() {
-title="Select example"
-prompt="Pick an option:"
-options=("A" "B" "C")
+OPTIONS=$1
+select opt in "${OPTIONS[@]}" "Q"; do
+  case "$REPLY" in
+   1) echo "You chose $opt => $REPLY";;
+   2) echo "You chose $opt => $REPLY";;
 
-echo "$title"
-PS3="$prompt "
-select opt in "${options[@]}" "Quit"; do 
+   $(( ${#OPTIONS[@]}+1 )) ) echo "Goodbye!"; break;;
+   *) echo "Invalid option. Try another one.";continue;;
+  esac
+ done
+}
 
-    case "$REPLY" in
-
-    1 ) echo "You picked $opt which is option $REPLY";;
-    2 ) echo "You picked $opt which is option $REPLY";;
-    3 ) echo "You picked $opt which is option $REPLY";;
-
-    $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
-    *) echo "Invalid option. Try another one.";continue;;
-
-    esac
-
+buildCharacter() {
+ALIVE=true
+PS3="$ "
+RACES=("Human" "Drakar")
+while $ALIVE; do
+menu "${RACES[@]}"
 done
 }
