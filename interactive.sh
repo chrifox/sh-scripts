@@ -29,31 +29,37 @@ exit 0
 
 menu() {
 TITLE=$1
-shift
+echo "$TITLE"
+shift # remove first arg
 OPTIONS=($@)
 PS3="$ "
-echo "$TITLE"
 select opt in "${OPTIONS[@]}" "Quit"; do
   case "$REPLY" in
-   $opt) echo "You chose $opt => $REPLY";;
+    "${opt}" ) echo "You chose $opt => $REPLY";;
 
-   $(( ${#OPTIONS[@]}+1 )) ) echo "Goodbye!"; break;;
-   *) echo "Invalid option. Try another one.";continue;;
+   $(( ${#OPTIONS[@]}+1 )) ) echo Goodbye!; break;;
+   * ) echo "Invalid option. Please try again.";continue;;
   esac
- done
+done
 }
 
-buildCharacter() {
+save() {
+CONTENTS=$1
+OUTPUT=$2
+echo $CONTENTS > $OUTPUT
+}
+
+buildChar() {
 echo "Choose a name"
-read name
-FILE="${name}-$(date +%F)"
-cd characters && touch $FILE && cd ..
+read NAME
+FILE="${NAME}-$(date +%F)"
 
 GENDERS=(Male Female)
 menu "Choose a gender" "${GENDERS[@]}"
 
-RACES=(Human Drakar)
+RACES=(Human Drakar Grog)
 menu "Choose a race" "${RACES[@]}"
 
-
+# CHAR=echo "NAME=$name"
+# save $CHAR "$FILE.tmp"
 }
