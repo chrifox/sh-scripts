@@ -28,11 +28,14 @@ exit 0
 }
 
 menu() {
-OPTIONS=$1
-select opt in "${OPTIONS[@]}" "Q"; do
+TITLE=$1
+shift
+OPTIONS=($@)
+PS3="$ "
+echo "$TITLE"
+select opt in "${OPTIONS[@]}" "Quit"; do
   case "$REPLY" in
-   1) echo "You chose $opt => $REPLY";;
-   2) echo "You chose $opt => $REPLY";;
+   $opt) echo "You chose $opt => $REPLY";;
 
    $(( ${#OPTIONS[@]}+1 )) ) echo "Goodbye!"; break;;
    *) echo "Invalid option. Try another one.";continue;;
@@ -41,10 +44,16 @@ select opt in "${OPTIONS[@]}" "Q"; do
 }
 
 buildCharacter() {
-ALIVE=true
-PS3="$ "
-RACES=("Human" "Drakar")
-while $ALIVE; do
-menu "${RACES[@]}"
-done
+echo "Choose a name"
+read name
+FILE="${name}-$(date +%F)"
+cd characters && touch $FILE && cd ..
+
+GENDERS=(Male Female)
+menu "Choose a gender" "${GENDERS[@]}"
+
+RACES=(Human Drakar)
+menu "Choose a race" "${RACES[@]}"
+
+
 }
