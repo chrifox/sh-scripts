@@ -65,18 +65,15 @@ menu "Choose a gender" "gender" "${GENDERS[@]}"
 RACES=(Human Drakar Grog)
 menu "Choose a race" "race" "${RACES[@]}"
 
-# CHAR=""
-# for file in ./tmp/*.tmp; do
-#  CONTENTS=`cat $file`
-#  $CHAR="${CHAR}${CONTENTS}"
-# done
+CHAR=""
+for file in ./tmp/*.tmp; do
+ CONTENT="$(cat $file)"
+ CHAR="${CHAR}${CONTENT} "
+done
 
 # save $CHAR "$FILE.txt"
-# echo $CHAR
+echo "${CHAR}"
 
 # cleanup .tmp files
-# for file in ./tmp/*.tmp; do
-#   cat $file
-# done
-rm -rf tmp
+rm -rf $SCRIPTS/tmp
 }
