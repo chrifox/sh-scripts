@@ -29,18 +29,21 @@ exit 0
 
 menu() {
 TITLE=$1
-echo "$TITLE"
-shift # remove first arg
+PROPERTY=$2
+shift 2 # remove first 2 args
 OPTIONS=($@)
 PS3="$ "
-select opt in "${OPTIONS[@]}" "Quit"; do
-  case "$REPLY" in
-    "${opt}" ) echo "You chose $opt => $REPLY";;
-
-   $(( ${#OPTIONS[@]}+1 )) ) echo Goodbye!; break;;
-   * ) echo "Invalid option. Please try again.";continue;;
-  esac
+echo "$TITLE"
+select ANSWER in "${OPTIONS[@]}"; do
+  for OPT in "${OPTIONS[@]}"; do
+    if [[ $OPT == $ANSWER ]]; then
+      break 2
+    fi
+  done
 done
+
+# save in .tmp file
+save "$PROPERTY: $ANSWER" "tmp/$PROPERTY.tmp"
 }
 
 save() {
@@ -52,14 +55,28 @@ echo $CONTENTS > $OUTPUT
 buildChar() {
 echo "Choose a name"
 read NAME
+mkdir $SCRIPTS/tmp
 FILE="${NAME}-$(date +%F)"
+save "name: $NAME" "tmp/name.tmp"
 
 GENDERS=(Male Female)
-menu "Choose a gender" "${GENDERS[@]}"
+menu "Choose a gender" "gender" "${GENDERS[@]}"
 
 RACES=(Human Drakar Grog)
-menu "Choose a race" "${RACES[@]}"
+menu "Choose a race" "race" "${RACES[@]}"
 
-# CHAR=echo "NAME=$name"
-# save $CHAR "$FILE.tmp"
+# CHAR=""
+# for file in ./tmp/*.tmp; do
+#  CONTENTS=`cat $file`
+#  $CHAR="${CHAR}${CONTENTS}"
+# done
+
+# save $CHAR "$FILE.txt"
+# echo $CHAR
+
+# cleanup .tmp files
+# for file in ./tmp/*.tmp; do
+#   cat $file
+# done
+rm -rf tmp
 }
