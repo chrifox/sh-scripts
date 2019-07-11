@@ -49,7 +49,7 @@ save "$PROPERTY: $ANSWER" "tmp/$PROPERTY.tmp"
 save() {
 CONTENTS=$1
 OUTPUT=$2
-echo $CONTENTS > $OUTPUT
+echo -e $CONTENTS > $OUTPUT
 }
 
 buildChar() {
@@ -68,11 +68,13 @@ menu "Choose a race" "race" "${RACES[@]}"
 CHAR=""
 for file in ./tmp/*.tmp; do
  CONTENT="$(cat $file)"
- CHAR="${CHAR}${CONTENT} "
+ CHAR="${CHAR}${CONTENT}\n"
 done
 
-# save $CHAR "$FILE.txt"
-echo "${CHAR}"
+# save character
+echo "Enter directory where you wish to save:"
+read dir
+save "${CHAR}" "$dir/$FILE.txt"
 
 # cleanup .tmp files
 rm -rf $SCRIPTS/tmp
