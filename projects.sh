@@ -30,14 +30,3 @@ alias rndebug="open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
 # Entrepreneur seminar
 export ES=$PROJECTS/entrepreneur-seminar
 alias es="cd $ES"
-
-export PROJECTS=$PROJECTS:$FLIX
-export PROJECTS=$PROJECTS:$FP_WEB
-export PROJECTS=$PROJECTS:$FP_STV
-export PROJECTS=$PROJECTS:$FP_MOB
-export PROJECTS=$PROJECTS:$FP_EMAIL
-export PROJECTS=$PROJECTS:$FP_COMMON
-
-export PROJECTS=$PROJECTS:$ES
-
-export PATH=$PATH:$PROJECTS
