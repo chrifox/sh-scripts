@@ -19,11 +19,3 @@ elif [ -n "$1" ]
 then echo "$1"
 fi
 }
-
-# super list
-sls() {
-dir=$1
-for item in $dir/*; do
- [[ -d $item ]] && echo "$(tput setab 5) DIRECTORY: $(tput sgr0) ${item}" || echo "$(tput setab 38) FILE: $(tput sgr0) ${item}"
-done
-}
