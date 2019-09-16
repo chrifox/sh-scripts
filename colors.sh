@@ -6,14 +6,16 @@ colors() {
 base=16
 total=256
 
+echo "Base colors:"
 baseGroup=8
 for (( i=0; i<${base}; i++ )); do
- if (( $i % $baseGroup == 0 )); then
+if (( $i % $baseGroup == 0 )); then
   echo
  fi
  printf "$(tput setab $i)  $(tput sgr0)"
 done
 
+echo "Additional colors:"
 group="${1:-36}"
 for (( i=${base}; i<${total}; i++ )); do
  index=$((i - base))
@@ -26,14 +28,9 @@ done
 echo
 }
 
-rainbow() {
-str=${1:-Rainbow!}
-offset=${2:-8}
-for (( i=0; i<${#str}; i++ )); do
-index=$((i + offset))
-printf "$(tput setaf $index)${str:$i:1}$(tput sgr0)"
-done
-echo
+getColor() {
+color=$1
+echo "$color = $(tput setab $color)  $(tput sgr0)"
 }
 
 # print color range
@@ -46,9 +43,9 @@ done
 echo
 }
 
-# snake
+# infinite random colors
 colorWave() {
-defaultChars="/\_"
+defaultChars="/―\_"
 chars="${1:-$defaultChars}"
 cols="${2:-256}"
 while :; do
