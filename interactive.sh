@@ -49,30 +49,42 @@ save "$PROPERTY: $ANSWER" "tmp/$PROPERTY.tmp"
 save() {
 CONTENTS=$1
 OUTPUT=$2
-echo $CONTENTS > $OUTPUT
+echo -e $CONTENTS > $OUTPUT
 }
 
 buildChar() {
-echo "Choose a name"
+echo "Choose a name:"
 read NAME
 mkdir $SCRIPTS/tmp
 FILE="${NAME}-$(date +%F)"
 save "name: $NAME" "tmp/name.tmp"
 
+echo "Enter age:"
+read AGE
+save "age: $AGE" "tmp/age.tmp"
+
 GENDERS=(Male Female)
 menu "Choose a gender" "gender" "${GENDERS[@]}"
 
-RACES=(Human Drakar Grog)
+ALIGNMENTS=(LG LN LE NG N NE CG CN CE)
+menu "Choose an alignment" "alignment" "${ALIGNMENTS[@]}"
+
+RACES=(Human Dwarf Gnome Elf Orc Halfling)
 menu "Choose a race" "race" "${RACES[@]}"
+
+CLASSES=(Warrior Sorcerer Assassin Priest Ranger Bard)
+menu "Choose a class" "class" "${CLASSES[@]}"
 
 CHAR=""
 for file in ./tmp/*.tmp; do
  CONTENT="$(cat $file)"
- CHAR="${CHAR}${CONTENT} "
+ CHAR="${CHAR}${CONTENT}\n"
 done
 
-# save $CHAR "$FILE.txt"
-echo "${CHAR}"
+# save character
+echo "Enter directory where you wish to save:"
+read DIR
+save "${CHAR}" "$DIR/$FILE.txt"
 
 # cleanup .tmp files
 rm -rf $SCRIPTS/tmp

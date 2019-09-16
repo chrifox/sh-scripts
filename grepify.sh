@@ -3,7 +3,7 @@
 export GREP_OPTIONS="--color=always"
 export GREP_COLOR="1;91;40"
 
-removeBlankLines() {
+stripBlankLines() {
  file=$1
  printf "$(sed '/^$/d' $file)"
 }
@@ -13,13 +13,6 @@ removeBlankLines() {
 sgrep() {
  searchPhrase="${1}"
  file="${2}"
+ shift 2
  printf "$(removeBlankLines $file | grep -in $searchPhrase)\n"
-}
-
-# reverse grep
-# find all cases that do not match, with line numbers
-rgrep() {
- searchPhrase="${1}"
- file="${2}"
- printf "$(removeBlankLines $file | grep -vin $searchPhrase)\n"
 }

@@ -14,12 +14,9 @@ alias gpr="git remote prune origin"
 alias gprdr="git remote prune origin --dry-run"
 
 # yarn
-export YARN_CACHE=$HOME/Library/Caches/Yarn/v4
 alias ys="yarn start"
 alias yt="yarn test"
 alias yb="yarn build"
-alias yc="yarn clean"
-alias yei="yarn extract-intl"
-alias haul="rm -rf haul-start-* && yarn haul"
 
+# formatting
 alias reset="tput sgr0"
