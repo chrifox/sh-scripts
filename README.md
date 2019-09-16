@@ -4,19 +4,20 @@ Generic scripts that can be used to make life easier, or just a little more fun.
 
 #### Getting Started
 
-Inside `$HOME/.bash_profile` or `$HOME/.bashrc` you can create the `SCRIPTS` variable
+Inside `$HOME/.bash_profile` or `$HOME/.bashrc`
 
-For example if you clone into `$HOME` it will be as follows:
-
+Export a SCRIPTS variable containing your cloned directory location:
 ```
 export SCRIPTS=$HOME/scripts
 ```
 
-Then simply load the .sh files from `$SCRIPTS` like so:
+Add this line to load scripts:
+```
+source $SCRIPTS/config/config.sh
+```
 
-```
-for file in $SCRIPTS/*.sh
-do
-  . $file
-done
-```
+Edit `config/config.sh` to customize which scripts to load.
+
+Don't forget to reload after these changes have been made.
+
+Simples.
