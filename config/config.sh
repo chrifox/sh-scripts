@@ -2,14 +2,16 @@
 
 # Configure which scripts you want to use in here
 
-source ../.git_completion.sh
+SD=$SCRIPTS
 
-source ../aliases.sh
-source ../grep.sh
-source ../helpers.sh
-source ../loaders.sh
+source $SD/.git_completion.sh
+
+source $SD/aliases.sh
+source $SD/grep.sh
+source $SD/helpers.sh
+source $SD/loaders.sh
 
 # # Uncomment below to load all scripts
-# for file in ../*.sh; do
+# for file in $SD/*.sh; do
 # source $file
 # done
