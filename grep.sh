@@ -17,5 +17,5 @@ sgrep() {
  searchPhrase="${1}"
  file="${2}"
  shift 2
- printf "$(removeBlankLines $file | grep --color=auto -in $searchPhrase)\n"
+ printf "$(stripBlankLines $file | grep -in $searchPhrase)\n"
 }
