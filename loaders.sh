@@ -20,6 +20,7 @@ printf "$(tput cnorm)"
 
 dots() {
 ch="${1:-...}"
+printf "$(tput civis)"
 while :; do
  for (( i=0; i<${#ch}; i++ )); do
   sleep 0.3
@@ -28,17 +29,19 @@ while :; do
  sleep 0.3
  printf "$(tput cub ${#ch})$(tput el)"
 done
+printf "$(tput cnorm)"
 }
 
 loadingBar() {
 length=${1:-10}
 color=${2:-2}
+printf "$(tput civis)"
 printf "$(tput setab 250)"
 for ((i=0; i<$length; i++ )); do printf " "; done
 printf "$(tput cub $length)$(tput setab $color)"
 for ((i=0; i<$length; i++ )); do
- sleep 0.3
+ sleep 0.2
  printf " "
 done
-printf "$(tput sgr0)\n"
+printf "$(tput sgr0)\n$(tput cnorm)"
 }

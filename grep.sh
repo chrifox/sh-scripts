@@ -1,8 +1,8 @@
 # $SCRIPTS/grep.sh
 
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+alias grep="grep --color=always"
+alias fgrep="fgrep --color=always"
+alias egrep="egrep --color=always"
 
 export GREP_COLOR="1;91;40"
 
@@ -19,3 +19,4 @@ sgrep() {
  shift 2
  printf "$(stripBlankLines $file | grep -in $searchPhrase)\n"
 }
+
