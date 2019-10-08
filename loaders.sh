@@ -1,25 +1,20 @@
 # $SCRIPTS/loader.sh
 
 spinner() {
-# Hide cursor
 printf "$(tput civis)"
-
 chars="/-\|"
 delay=${1:-0.25}
-
 while :; do
  for (( i=0; i<${#chars}; i++ )); do
   sleep $delay
   printf "%s\r" "${chars:$i:1}"
  done
 done
-
-# Reset cursor
 printf "$(tput cnorm)"
 }
 
 dots() {
-ch="${1:-...}"
+ch="${1:-"..."}"
 printf "$(tput civis)"
 while :; do
  for (( i=0; i<${#ch}; i++ )); do
@@ -43,5 +38,5 @@ for ((i=0; i<$length; i++ )); do
  sleep 0.2
  printf " "
 done
-printf "$(tput sgr0)\n$(tput cnorm)"
+echo "$(tput sgr0)$(tput cnorm)"
 }

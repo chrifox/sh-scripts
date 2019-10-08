@@ -10,9 +10,7 @@ total=256
 echo "Base colors: (0 - 15)"
 baseGroup=8
 for (( i=0; i<${base}; i++ )); do
- if (( $i % $baseGroup == 0 && $i != 0 )); then
-  echo
- fi
+ if (( $i % $baseGroup == 0 && $i != 0 )); then echo; fi
  printf "$(tput setab $i)  $(tput sgr0)"
 done
 
@@ -22,9 +20,7 @@ echo "Additional colors: (16 - 231)"
 group="${1:-36}"
 for (( i=${base}; i<${mainColors}; i++ )); do
  index=$((i - base))
- if (( $index % $group == 0 && $index != 0 )); then
-  echo
- fi
+ if (( $index % $group == 0 && $index != 0 )); then echo; fi
  printf "$(tput setab $i)  $(tput sgr0)"
 done
 
