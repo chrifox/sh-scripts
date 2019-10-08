@@ -4,8 +4,11 @@
 sls() {
 dir=${1:-"."}
 for item in $dir/*; do
- [[ -d $item ]] && echo "$(tput setaf 46) DIR: $(tput sgr0) ${item}" || echo "$(tput setaf 51) FILE: $(tput sgr0) ${item}"
+ [[ -d $item ]] &&
+echo "$(tput setaf 46) $(stat -c %A" "%a" "%n $item)" ||
+echo "$(tput setaf 51) $(stat -c %A" "%a" "%n $item)"
 done
+printf "$(tput sgr0)"
 }
 
 # split by :
