@@ -4,5 +4,7 @@
 # custom
 USERNAME="$(tput setaf 10)$(tput bold)\u$(tput sgr0)"
 WD="$(tput setaf 12)$(tput bold)\W$(tput sgr0)"
+# 💀
+# 💻
 ICON="$(tput setaf 3)\$$(tput sgr0)"
-export PS1="${USERNAME}:${WD}${ICON}"
+export PS1="💀 ${USERNAME} 💻 ${WD}${ICON}"
