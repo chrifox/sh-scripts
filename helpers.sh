@@ -2,11 +2,10 @@
 
 # super list
 sls() {
-dir=${1:-"."}
-for item in $dir/*; do
+for item in * .[^.]*; do
  [[ -d $item ]] &&
-echo "$(tput setaf 46) $(stat -c %A" "%a" "%n $item)" ||
-echo "$(tput setaf 51) $(stat -c %A" "%a" "%n $item)"
+echo "$(tput setaf 10) $(stat -c %A" "%a" "%n $item)" ||
+echo "$(tput setaf 14) $(stat -c %A" "%a" "%n $item)"
 done
 printf "$(tput sgr0)"
 }
