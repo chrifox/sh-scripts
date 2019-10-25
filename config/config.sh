@@ -1,5 +1,4 @@
 # $SCRIPTS/config.sh
-
 # Configure which scripts you want to use in here
 
 SD=$SCRIPTS
