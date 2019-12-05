@@ -9,7 +9,7 @@
 # \h : the hostname up to the first ‘.’
 # \H : the hostname
 # \j : the number of jobs currently managed by the shell
-# \l : the basename of the shellâ€™s terminal device name
+# \l : the basename of the shell's terminal device name
 # \n : newline
 # \r : carriage return
 # \s : the name of the shell, the basename of $0 (the portion following the final slash)
