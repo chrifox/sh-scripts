@@ -25,3 +25,6 @@ alias yb="yarn build"
 
 # formatting
 alias reset="tput sgr0"
+
+# ftp ffx
+alias ffxftp="lftp FFXFtpA 134.213.180.155"
