@@ -84,7 +84,7 @@ done
 # save character
 echo "Enter directory where you wish to save:"
 read DIR
-save "{\n${CHAR}}" "$DIR/$FILE.txt"
+save "{\n${CHAR}}" "$DIR/$FILE.json"
 
 # cleanup .tmp files
 rm -rf $SCRIPTS/tmp
