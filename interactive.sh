@@ -43,7 +43,7 @@ select ANSWER in "${OPTIONS[@]}"; do
 done
 
 # save in .tmp file
-save "$PROPERTY: $ANSWER" "tmp/$PROPERTY.tmp"
+save "\"$PROPERTY\": \"$ANSWER\"" "tmp/$PROPERTY.tmp"
 }
 
 save() {
@@ -57,11 +57,11 @@ echo "Choose a name:"
 read NAME
 mkdir $SCRIPTS/tmp
 FILE="${NAME}-$(date +%F)"
-save "name: $NAME" "tmp/name.tmp"
+save "\"name\": \"$NAME\"" "tmp/name.tmp"
 
 echo "Enter age:"
 read AGE
-save "age: $AGE" "tmp/age.tmp"
+save "\"age\": \"$AGE\"" "tmp/age.tmp"
 
 GENDERS=(Male Female)
 menu "Choose a gender" "gender" "${GENDERS[@]}"
@@ -78,13 +78,13 @@ menu "Choose a class" "class" "${CLASSES[@]}"
 CHAR=""
 for file in ./tmp/*.tmp; do
  CONTENT="$(cat $file)"
- CHAR="${CHAR}${CONTENT}\n"
+ CHAR="${CHAR}${CONTENT},\n"
 done
 
 # save character
 echo "Enter directory where you wish to save:"
 read DIR
-save "${CHAR}" "$DIR/$FILE.txt"
+save "{\n${CHAR}}" "$DIR/$FILE.txt"
 
 # cleanup .tmp files
 rm -rf $SCRIPTS/tmp
