@@ -25,22 +25,24 @@ int main(void)
 	ifstream file ("data.csv");
 	string value;
 	string property;
+	cout << "Filter by: ";
 	cin >> property; // take property to filter by
 	
 	while (file.good())
 	{
 		getline (file, value, ',');
-		string line = string(value, 1, value.length() - 2);
-		int x = split_count(line, ',') + 1;
-		string res[x];
-		split(value, ',', res);
+		cout << value << endl;
+//		string line = string(value, 1, value.length() - 2);
+//		int x = split_count(line, ',') + 1;
+//		string res[x];
+//		split(value, ',', res);
 
 //		for (int i = 0; i < x; i++)
 //		{
 //			cout << res[i] << endl;
 //		}
 		
-		cout << value << endl;
+//		cout << line << endl;
 	}
 	
 	return 0;
