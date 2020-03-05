@@ -1,9 +1,5 @@
 # $SCRIPTS/grep.sh
 
-alias grep="grep --color=always"
-alias fgrep="fgrep --color=always"
-alias egrep="egrep --color=always"
-
 export GREP_COLOR="1;91;40"
 
 stripBlankLines() {
