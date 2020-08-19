@@ -21,7 +21,7 @@
 # 35	Magenta
 # 36	Cyan
 # 37	White
-  
+
 # Background colors
 # 40	Black
 # 41	Red
@@ -37,5 +37,9 @@
 # 💻
 
 ## custom
-export PS1="\[\033[01;34m\]\w \t\n\[\033[32m\]\u\[\033[33m\]\$ \[\033[00m\]"
+DATETIME="\[\033[31m\]\D{%a %d/%m/%Y} \t"
+WDIR="\[\033[01;34m\]\w"
+TERM_USER="\[\033[01;32m\]\u\[\033[33m\]\$"
+
+export PS1="$DATETIME\n$WDIR\n$TERM_USER \[\033[00m\]"
 
