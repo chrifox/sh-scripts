@@ -10,17 +10,11 @@ alias gf="git fetch"
 alias gpd="git pull"
 alias gpu="git push"
 alias glog="git log --graph --all --oneline --decorate"
-alias gpr="git remote prune origin"
-alias gprdr="git remote prune origin --dry-run"
-
-# list all merged remote branches
-# alias gbremote="for branch in `git branch -r --merged | grep -v HEAD`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r"
-
-# list all unmerged remote branches
-# alias gburemote="for branch in `git branch -r --no-merged | grep -v HEAD`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r"
+alias grp="git remote prune origin"
+alias grpdr="git remote prune origin --dry-run"
 
 # delete remote branch
-# alias gbremoted="git push origin --delete branch-name" 
+alias gdrb="git push origin --delete $1"
 
 # yarn
 alias ys="yarn start"
@@ -30,5 +24,3 @@ alias yb="yarn build"
 # formatting
 alias reset="tput sgr0"
 
-# ftp ffx
-alias ffxftp="lftp FFXFtpA 134.213.180.155"

@@ -28,15 +28,16 @@ printf "$(tput cnorm)"
 }
 
 loadingBar() {
-length=${1:-10}
-color=${2:-2}
+length=$(tput cols)
+color=${1:-2}
+delay=${2:-0.1}
 printf "$(tput civis)"
 printf "$(tput setab 250)"
 for ((i=0; i<$length; i++ )); do printf " "; done
 printf "$(tput cub $length)$(tput setab $color)"
 for ((i=0; i<$length; i++ )); do
- sleep 0.2
- printf " "
+ sleep 0.1
+ printf $delay
 done
 echo "$(tput sgr0)$(tput cnorm)"
 }
