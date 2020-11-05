@@ -36,8 +36,8 @@ printf "$(tput setab 250)"
 for ((i=0; i<$length; i++ )); do printf " "; done
 printf "$(tput cub $length)$(tput setab $color)"
 for ((i=0; i<$length; i++ )); do
- sleep 0.1
- printf $delay
+ sleep $delay
+ printf " "
 done
 echo "$(tput sgr0)$(tput cnorm)"
 }
