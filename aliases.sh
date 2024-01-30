@@ -2,6 +2,10 @@
 
 alias aliases="cat $SCRIPTS/aliases.sh"
 
+# bash
+alias bpe="vim ~/.bash_profile"
+alias bpr="source ~/.bash_profile"
+
 # git
 alias gs="git status"
 alias gco="git checkout"
